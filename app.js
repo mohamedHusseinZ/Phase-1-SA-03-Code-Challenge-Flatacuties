@@ -12,43 +12,48 @@ const animalslist = document.getElementById("animals")
 const img = document.getElementById("character-image")
 const votecount = document.getElementById("votes-form")
 
-fetch("http://localhost:3000/characters",{
-    method: "GET",
-    headers:{
-        "content-type": "application/json"
-    }
-}).then(data => data.json())
-.then( Response => {
-characters =[...Response]
-showCharacters(Response)
-
+fetch("http://localhost:3000/characters", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json"
+  }
 })
+  .then(response => response.json()) // Parse the response to JSON
+  .then(characters => {
+    showCharacters(characters);
+  })
+  .catch(error => {
+    console.error("An error occurred:", error);
+  });
 
+
+;
 function showCharacters(characters) {
     const characterInfo = document.getElementById("animals");
-
+  
     for (let character of characters) {
-        const span = document.createElement("span");
-        span.innerText = character.name;
-        span.setAttribute("id", character.id);
-        span.style.color = "blue"; 
-        span.style.fontSize = "16px";
-        span.style.margin = "10px";
-        span.style.border ="4px" ;
-        // Append each span to the characterInfo container
-        characterInfo.appendChild(span);
+      const span = document.createElement("span");
+      span.innerText = character.name;
+      span.setAttribute("id", character.id);
+      span.style.color = "blue";
+      span.style.fontSize = "16px";
+      span.style.margin = "10px";
+      span.style.border = "4px"; 
+  
+      span.addEventListener("click", (event) => {
+        showCharacterContent(getCharacterById(characters, parseInt(event.target.id)));
+      });
+  
+      characterInfo.appendChild(span);
     }
-}
+  }
+  
+  function showCharacterContent(character) {
 
-    
-        
-        
-    
+  }
+  
 
-         span.addEventListener("click", (event) => {
-            showCharacterContent(getCharacterById(characters, parseInt(event.target.id)));
-            showCharacters() 
-        });
+  
 
       
          
@@ -66,20 +71,15 @@ function getCharacterById(character, id) {
 
 
 
-
-
-
-
-
-
-
 function showCharacter(character) {
-    const img = document.getElementById("character-image"); 
-    img.src = character.image;
-    
-}
-
-
+    const img = document.getElementById("character-image");
+    if (img && character && character.image) {
+      img.src = character.image;
+    } else {
+      console.error("Invalid character or image element.");
+    }
+  }
+  
 
 
 function currentVotes(){
@@ -93,6 +93,6 @@ votecount.addEventListener("submit",(Event)=> {
 });
 }
 function showCharacterContent(character) {
-    // Implement the code to show character content here
-    console.log("Showing character content:", character);
+    
+    console.log("Showing character content:", character.image );
 }
