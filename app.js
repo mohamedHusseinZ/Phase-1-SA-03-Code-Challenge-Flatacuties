@@ -4,7 +4,7 @@ let animals = [
   {
     "id": 1,
         "name": "Mr. Cute",
-        "image":"https://stock.adobe.com/ke/search?k=cat",
+        "image":"ps://media2.giphtthy.com/media/20G9uNqE3K4dRjCppA/source.gif",
         "votes": 0
   },
   {
@@ -36,7 +36,7 @@ let animals = [
 
 
 
-fetch("http://localhost:3000/characters", {
+fetch("https://my-json-server.typicode.com/2559055/falacuties---code--challenge-task/characters", {
     method: "GET",
     headers: {
         "Content-Type": "application/json"
