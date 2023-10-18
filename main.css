@@ -1,10 +1,42 @@
 body{
   background-color: aquamarine;
 }
-#span{
-  align-items: center;
-  margin: 1000px;
-  padding: 50px;
+#animal-list {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #007BFF;
 }
+
+#animal-list > div {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #333;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+}
+
+#animal-list > div:hover {
+  background-color: #007BFF;
+  color: white;
+  transform: scale(1.05);
+}
+
+#selected-animal {
+  margin-top: 20px;
+  border: 2px solid #333;
+  padding: 20px;
+}
+
+#character-image {
+  max-width: 100%;
+  height: auto;
+}
+
+#votes-form {
+  margin-top: 10px;
+}
+
   
 
