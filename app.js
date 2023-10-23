@@ -36,7 +36,7 @@ let animals = [
 
 
 
-fetch("https://my-json-server.typicode.com/mohamedHusseinZ/falacuties---code--challenge-task/character", {
+fetch("https://my-json-server.typicode.com/https://github.com/mohamedHusseinZ/falacute--code--challenge-task", {
     method: "GET",
     headers: {
         "Content-Type": "application/json"
@@ -51,7 +51,7 @@ fetch("https://my-json-server.typicode.com/mohamedHusseinZ/falacuties---code--ch
   
       animals.forEach(animal => {
           const div = document.createElement("div");
-          div.textContent = animal.name;
+          div.innerHTML = animal.name;
           div.addEventListener("click", () => selectAnimal(animal));
           animalList.appendChild(div);
       });
@@ -60,15 +60,21 @@ fetch("https://my-json-server.typicode.com/mohamedHusseinZ/falacuties---code--ch
   function selectAnimal(animal) {
       const img = document.getElementById("character-image");
       img.src = animal.image;
-  
-      const voteForm = document.getElementById("votes-form");
-      voteForm.addEventListener("submit", event => {
-          event.preventDefault();
-          const newVotes = parseInt(event.target.vote.value);
-          animal.votes += newVotes;
-        
-      });
   }
+
+  function animalVotes(animal) {
+    const voteForm = document.getElementById("votes-form");
+    const voteCountElement = document.getElementById("vote-count");
+
+    voteForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const newVotes = parseInt(event.target.vote.value);
+        animal.votes += newVotes;
+
+        // Update the vote count displayed in the DOM
+        voteCountElement.textContent = animal.votes;
+    });
+}
   
   document.addEventListener("DOMContentLoaded", function() {
       showAnimalList(animals);
@@ -80,24 +86,9 @@ fetch("https://my-json-server.typicode.com/mohamedHusseinZ/falacuties---code--ch
 function showCharacters(animals) {
   const characterInfo = document.getElementById("animals");
     characterInfo.innerHTML = "";    
-
-
-    for (let animal of animals) {
-        const ul = document.createElement("ul");
-        const li = document.createElement("li");
-        li.innerText = animal.name;
-        ul.appendChild(li);
-        ul.setAttribute("id", animal.id);
-      
-
-        ul.addEventListener("click", (event) => {
-          event.preventDefault();
-            console.log(animal, parseInt(event.target.id, 10));
-        });
-
-    characterInfo.appendChild(ul);
-    }
 }
+
+
 
 function showCharacter(animals, id) {
     return animals.find((char) => char.id === id);
