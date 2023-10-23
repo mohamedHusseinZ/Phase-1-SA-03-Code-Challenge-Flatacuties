@@ -36,7 +36,7 @@ let animals = [
 
 
 
-fetch("https://my-json-server.typicode.com/https://github.com/mohamedHusseinZ/falacute--code--challenge-task", {
+fetch("https://my-json-server.typicode.com/typicode/mohamedHusseinZ/fala---ta-cuties---code--challenge-task", {
     method: "GET",
     headers: {
         "Content-Type": "application/json"
